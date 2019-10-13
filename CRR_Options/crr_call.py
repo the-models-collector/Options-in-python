@@ -53,8 +53,8 @@ d = -0.5
 r = 0.5
 T = 4
 
-call_price(S0, K, T, u, d, r)
-answer = round(call_price(S0, K, T, u, d, r)[0], 2)
-print(answer)
+# call_price(S0, K, T, u, d, r)
+# answer = round(call_price(S0, K, T, u, d, r)[0], 2)
+# print(answer) # 8.19
 
 

@@ -37,5 +37,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-answer = round(call_price(S0, K, T, u, d, r),2)
-print(answer) # 8.19
+# answer = round(call_price(S0, K, T, u, d, r),2)
+# print(answer) # 8.19

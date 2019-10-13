@@ -53,6 +53,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-# print(put_price(S0, K, T, u, d, r))
-# answer = round(put_price(S0, K, T, u, d, r)[0], 2)
-# print(answer)
+# answer = round(put_price(S0, K, T, u, d, r), 2)
+# print(answer) # 0.17
