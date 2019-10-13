@@ -1,6 +1,6 @@
 def call_price(S0, K, T, u, d, r):
     """
-    put_price(S0, K, T, u, d, r) = price of a put option in CRR method
+    call_price(S0, K, T, u, d, r) = initial price of a call option in CRR method
 
     S0 = initial asset price
     K = strike pirce

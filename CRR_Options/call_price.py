@@ -1,6 +1,6 @@
 def call_price(S0, K, T, u, d, r):
     """
-    call_price(S0, K, T, u, d, r) = price of a call option using put-call parity
+    call_price(S0, K, T, u, d, r) = initial price of a call option using put-call parity
 
     S0 = initial asset price
     K = strike pirce
