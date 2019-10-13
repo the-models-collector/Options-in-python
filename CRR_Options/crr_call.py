@@ -1,4 +1,4 @@
-def put_price(S0, K, T, u, d, r):
+def call_price(S0, K, T, u, d, r):
     """
     put_price(S0, K, T, u, d, r) = price of a put option in CRR method
 
@@ -31,7 +31,7 @@ def put_price(S0, K, T, u, d, r):
     # calculating terminal payoff of put option
     price = []
     for i in ST:
-        price.append(max((K - i), 0))
+        price.append(max((i - K), 0))
 
     # calculating risk neutral probabilities
     q = (r - d) / (u - d)
@@ -42,7 +42,7 @@ def put_price(S0, K, T, u, d, r):
             price[j] = ((q * price[j]) + (1 - q) * price[j + 1]) / (1 + r)
         price.pop()
 
-    return(price[0])
+    return(price)
 
 
 # input values
@@ -53,6 +53,8 @@ d = -0.5
 r = 0.5
 T = 4
 
-# print(put_price(S0, K, T, u, d, r))
-# answer = round(put_price(S0, K, T, u, d, r)[0], 2)
-# print(answer)
+call_price(S0, K, T, u, d, r)
+answer = round(call_price(S0, K, T, u, d, r)[0], 2)
+print(answer)
+
+
