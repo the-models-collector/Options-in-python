@@ -2,7 +2,7 @@ def CRR_formula_put(S0, K, T, u, d, r):
     """
     CRR_formula_put(S0, K, T, u, d, r) = initial price of a call option using CRR formula
 
-    CRR formula = (K/R^T)*phi(A-1;T,q) - S_0*phi(A-1;T,q_dash)
+    CRR formula = (K/R^T)*phi(A;T,q) - S_0*phi(A;T,q_dash)
 
     where: 
     phi(_;_,_) is a binomial distribution function
