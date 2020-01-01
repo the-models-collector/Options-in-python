@@ -50,8 +50,8 @@ def CRR_formula_put(S0, K, T, u, d, r):
     A = math.floor((np.log(K / (S0 * D**T)) / np.log(U / D)))
 
     # price of call option
-    price = (K / (R**T)) * binom.cdf(A - 1, T, q) - \
-        S0 * binom.cdf(A - 1, T, q_dash)
+    price = (K / (R**T)) * binom.cdf(A, T, q) - \
+        S0 * binom.cdf(A, T, q_dash)
 
     return(price)
 
