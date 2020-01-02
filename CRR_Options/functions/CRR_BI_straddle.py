@@ -1,6 +1,6 @@
-def put_price(S0, K, T, u, d, r):
+def CRR_BI_straddle(S0, K, T, u, d, r):
     """
-    put_price(S0, K, T, u, d, r) = initial price of a put option in CRR method
+    CRR_BI_straddle(S0, K, T, u, d, r) = initial price of a straddle option in CRR framework using backward induction
 
     S0 = initial asset price
     K = strike pirce
@@ -31,7 +31,7 @@ def put_price(S0, K, T, u, d, r):
     # calculating terminal payoff of put option
     price = []
     for i in ST:
-        price.append(max((K - i), 0))
+        price.append(max((K - i), (i - K)))
 
     # calculating risk neutral probabilities
     q = (r - d) / (u - d)
@@ -53,5 +53,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-# answer = round(put_price(S0, K, T, u, d, r), 2)
-# print(answer) # 0.17
+answer = round(CRR_BI_straddle(S0, K, T, u, d, r), 5)
+print(answer)  # 0.17

@@ -4,7 +4,7 @@ def put_price_Ber(S0, K, T, u, d, r):
 
     S0 = initial asset price
     K = strike pirce
-    T = expiary time
+    T = expiry time
     u = up
     d = down
     r = fixed interest rate

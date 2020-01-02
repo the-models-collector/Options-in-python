@@ -1,13 +1,12 @@
-def CRR_formula_put(S0, K, T, u, d, r):
+def CRR_formula_straddle(S0, K, T, u, d, r):
     """
-    CRR_formula_put(S0, K, T, u, d, r) = initial price of a call option using CRR formula
+    CRR_formula_straddle(S0, K, T, u, d, r) = initial price of a straddle option using CRR formula
 
-    CRR formula = (K/R^T)*phi(A;T,q) - S_0*phi(A;T,q_dash)
+    CRR formula = pi_c + pi_p
 
     where: 
-    phi(_;_,_) is a binomial distribution function
-    A = minimum number of upmoves for the option to be in the money
-    q_dash = q*(U/D)
+    pi_c = price of a call option 
+    pi_p = price of a put option 
     q = risk neutral probability
     S0 = initial asset price
     K = strike pirce
@@ -17,10 +16,6 @@ def CRR_formula_put(S0, K, T, u, d, r):
     r = fixed interest rate
 
     """
-
-    # import modules
-    import numpy as np
-    from scipy.stats import binom
 
     # check input paramters
     if S0 <= 0.0 or u <= -1 or (d <= -1 or d >= u) or r <= -1:
@@ -49,11 +44,13 @@ def CRR_formula_put(S0, K, T, u, d, r):
     q_dash = ((R - D) / (U - D)) * (U / R)
     A = math.ceil((np.log(K / (S0 * D**T)) / np.log(U / D))) - 1
 
-    # price of call option
-    price = (K / (R**T)) * binom.cdf(A, T, q) - \
+    # price of put and call of call option
+    pi_p = (K / (R**T)) * binom.cdf(A, T, q) - \
         S0 * binom.cdf(A, T, q_dash)
+    pi_c = S0 * (1 - binom.cdf(A, T, q_dash)) - (K /
+                                                 (R**T)) * (1 - binom.cdf(A, T, q))
 
-    return(price)
+    return(pi_p + pi_c)
 
 
 # input values
@@ -64,5 +61,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-answer = round(CRR_formula_put(S0, K, T, u, d, r), 2)
-print(answer)  # 0.17
+answer = round(CRR_formula_straddle(S0, K, T, u, d, r), 2)
+print(answer)  # 8.36

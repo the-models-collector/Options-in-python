@@ -11,16 +11,12 @@ def CRR_formula_call(S0, K, T, u, d, r):
     q = risk neutral probability
     S0 = initial asset price
     K = strike pirce
-    T = expiary time
+    T = expiry time
     u = up
     d = down
     r = fixed interest rate
 
     """
-
-    # import modules
-    import numpy as np
-    from scipy.stats import binom
 
     # check input paramters
     if S0 <= 0.0 or u <= -1 or (d <= -1 or d >= u) or r <= -1:
@@ -47,7 +43,17 @@ def CRR_formula_call(S0, K, T, u, d, r):
     # calculating terms: q, q_dash, A
     q = (R - D) / (U - D)
     q_dash = ((R - D) / (U - D)) * (U / R)
-    A = math.ceil((np.log(K / (S0 * D**T)) / np.log(U / D)))
+    A = math.floor((np.log(K / (S0 * D**T)) / np.log(U / D))) + 1
+
+    """ ----------- begin comment -----------
+    # calculating A in the following way is incorrect.
+    # A = math.ceil((np.log(K / (S0 * D**T)) / np.log(U / D)))
+    # to be quite fair, it will work most of the time.
+    # except when (np.log(K / (S0 * D**T)) / np.log(U / D)) is an integer
+    # example, if (np.log(K / (S0 * D**T)) / np.log(U / D)) = 1 then A = math.ceil(1) = 1
+    # however, the true correct value of A = 2
+    # the problem is because the function math.ceil(x) yields the smallest integer value greater or equal to x
+        ----------- end comment -----------"""
 
     # price of call option
     price = S0 * (1 - binom.cdf(A - 1, T, q_dash)) - (K /
