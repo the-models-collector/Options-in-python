@@ -53,5 +53,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-answer = round(CRR_BI_straddle(S0, K, T, u, d, r), 5)
-print(answer)  # 0.17
+answer = round(CRR_BI_straddle(S0, K, T, u, d, r), 2)
+print(answer)  # 8.36
