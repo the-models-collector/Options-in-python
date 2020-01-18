@@ -11,7 +11,7 @@ def call_price(S0, K, T, u, d, r):
     """
 
     # check input paramters
-    if S0 <= 0.0 or u <= -1 or (d <= -1 or d >= u) or r <= -1:
+    if S0 <= 0.0 or d <= -1 or d >= u or r <= -1:
         print("Invalid input arguments")
         print("Terminating program")
         return(1)
@@ -25,9 +25,10 @@ def call_price(S0, K, T, u, d, r):
     import crr_put
 
     # put price rounded to 2 decimal places
-    put_price = round(crr_put.put_price(S0, K, T, u, d, r),2)
+    put_price = round(crr_put.put_price(S0, K, T, u, d, r), 2)
 
-    return S0 - K/((1+r)**T) + put_price
+    return S0 - K / ((1 + r)**T) + put_price
+
 
 # input values
 S0 = 10

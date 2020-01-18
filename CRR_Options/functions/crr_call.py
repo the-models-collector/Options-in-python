@@ -12,7 +12,7 @@ def call_price(S0, K, T, u, d, r):
     """
 
     # check input paramters
-    if S0 <= 0.0 or u <= -1 or (d <= -1 or d >= u) or r <= -1:
+    if S0 <= 0.0 or d <= -1 or d >= u or r <= -1:
         print("Invalid input arguments")
         print("Terminating program")
         return(1)
@@ -56,5 +56,3 @@ T = 4
 # call_price(S0, K, T, u, d, r)
 # answer = round(call_price(S0, K, T, u, d, r)[0], 2)
 # print(answer) # 8.19
-
-

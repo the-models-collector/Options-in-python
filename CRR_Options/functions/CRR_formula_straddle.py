@@ -18,7 +18,7 @@ def CRR_formula_straddle(S0, K, T, u, d, r):
     """
 
     # check input paramters
-    if S0 <= 0.0 or u <= -1 or (d <= -1 or d >= u) or r <= -1:
+    if S0 <= 0.0 or d <= -1 or d >= u or r <= -1:
         print("Invalid input arguments")
         print("Terminating program")
         return(1)
