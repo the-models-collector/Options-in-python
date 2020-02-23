@@ -1,18 +1,18 @@
-def CRR_formula_Bincall(S0, K, T, u, d, r):
+def CRR_formula_Binput(S0, K, T, u, d, r):
     """
-    CRR_formula_Bincall(S0, K, T, u, d, r) = initial price of a binary call option using CRR formula
+    CRR_formula_Binput(S0, K, T, u, d, r) = initial price of a binary put option using CRR formula
 
-    CRR formula = (1/(1+r)^T)varphi(A;T,q)
+    CRR formula = (1/(1+r)^T)phi(A;T,q)
 
-    where: 
-    varphi(_;_,_) is a complementary binomial distribution function
+    where:
+    phi(_;_,_) is a binomial distribution function
     A = minimum number of upmoves for the option to be in the money
     q = risk neutral probability
     S0 = initial asset price
     K = strike pirce
     T = expiry time
-    u = up
-    d = down
+    u = up factor
+    d = down factor
     r = fixed interest rate
 
     """
@@ -41,10 +41,10 @@ def CRR_formula_Bincall(S0, K, T, u, d, r):
 
     # calculating terms: q, q_dash, A
     q = (R - D) / (U - D)
-    A = math.floor((np.log(K / (S0 * D**T)) / np.log(U / D))) + 1
+    A = math.floor((np.log(K / (S0 * D**T)) / np.log(U / D)))
 
-    # price of a binary call option
-    price = (1 / R**T) * (1 - binom.cdf(A - 1, T, q))
+    # price of a binary put option
+    price = (1 / (R**T)) * binom.cdf(A, T, q)
 
     return(price)
 
@@ -57,5 +57,5 @@ d = -0.5
 r = 0.5
 T = 4
 
-answer = round(CRR_formula_Bincall(S0, K, T, u, d, r), 2)
-print(answer)  # 0.12
+answer = round(CRR_formula_Binput(S0, K, T, u, d, r), 2)
+print(answer)  # 0.08
