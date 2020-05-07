@@ -57,5 +57,6 @@ d = -0.5
 r = 0.5
 T = 4
 
-answer = round(CRR_formula_Bincall(S0, K, T, u, d, r), 2)
-print(answer)  # 0.12
+# answer = round(CRR_formula_Bincall(S0, K, T, u, d, r), 2)
+# print(answer)  # 0.12
+print(CRR_formula_Bincall(S0, K, T, u, d, r))
